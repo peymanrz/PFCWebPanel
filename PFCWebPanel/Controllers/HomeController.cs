@@ -9,8 +9,13 @@ namespace PFCWebPanel.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        [Authorize]
         public ActionResult Index()
         {
+
+            //asteriskcdrdbEntities astEntities=new asteriskcdrdbEntities();
+
+            //ViewBag.Hello = astEntities.cdr.OrderByDescending(x=>x.uniqueid).Select(x => x.uniqueid).FirstOrDefault();
             return View();
         }
     }

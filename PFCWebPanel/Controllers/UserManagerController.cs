@@ -22,6 +22,7 @@ namespace PFCWebPanel.Controllers
             _iAdmin = iAdmin;
             _iUser = iUser;
         }
+        [Authorize]
         public ActionResult Index()
         {
             List<TblUsers> users = _iAdmin.ShowUsers();
@@ -29,6 +30,7 @@ namespace PFCWebPanel.Controllers
 
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             TblUsers users = _iAdmin.ShowUserById(id);
@@ -44,6 +46,7 @@ namespace PFCWebPanel.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, EditUserViewModel tblUsers)
         {
             if (base.ModelState.IsValid)
@@ -66,11 +69,13 @@ namespace PFCWebPanel.Controllers
             return View(tblUsers);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -129,7 +134,12 @@ namespace PFCWebPanel.Controllers
 
 
 
-
+        [Authorize]
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
+        }
 
         [AllowAnonymous]
         public ActionResult Login()
