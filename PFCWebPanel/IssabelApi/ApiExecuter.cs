@@ -78,7 +78,7 @@ namespace PFCWebPanel
                 {
                     res = res.Substring(31);
                     res = res.Substring(0, (res.Length - 2));
- 
+
                     //return res;
                     QueueApi queue = QueueApi.FromJson(res);
                     QueueApiViewModel queuemodel = new QueueApiViewModel();
@@ -199,7 +199,7 @@ namespace PFCWebPanel
                 Failretry += 1;
                 if (Failretry < 10)
                 {
-                    
+
                     goto retry;
                 }
                 else
@@ -607,12 +607,12 @@ namespace PFCWebPanel
         //    extensionViewModel.Recording_OutboundExternal = extension.Recording.OutboundExternal;
         //    extensionViewModel.Recording_OutboundInternal = extension.Recording.OutboundInternal;
         //    extensionViewModel.Recording_Priority = extension.Recording.Priority.Value;
- 
+
         //    extensionViewModel.cfringtimer = extension.ExtensionOptions.CallForwardRingTime.Value;
         //    extensionViewModel.callwaiting = extension.ExtensionOptions.CallWaiting;
         //    extensionViewModel.concurrency_limit = extension.ExtensionOptions.OutboundConcurrencyLimit.Value;
         //    extensionViewModel.ringtimer = extension.ExtensionOptions.RingTime.Value;
-             
+
 
         //    if (extension.Voicemail.Enabled == "yes")
         //    {
@@ -736,8 +736,6 @@ namespace PFCWebPanel
         //    return res;
         //}
         public async Task<string> GetNewTokenRest()
-
-
         {
             ServicePointManager.ServerCertificateValidationCallback =
                 new RemoteCertificateValidationCallback(delegate { return true; });

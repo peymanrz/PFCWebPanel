@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using PFCWebPanel.Context;
 
 namespace PFCWebPanel.Classes
 {
@@ -15,7 +16,14 @@ namespace PFCWebPanel.Classes
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
+            using (PFCSqlEntities db =new PFCSqlEntities())
+            {
+                    string[] result = new string[1];
+            int userid = Convert.ToInt32(username);
+             result[0] = db.TblUsers.Where(ex => ex.Id == userid).Select(x => x.TblRoles.Name).FirstOrDefault();
+            return result;
+            }
+        
         }
 
         public override void CreateRole(string roleName)
