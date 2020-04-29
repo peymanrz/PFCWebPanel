@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PFCSqlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblExtensions">
+          <Key>
+            <PropertyRef Name="TblExtID" />
+          </Key>
+          <Property Name="TblExtID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TblExtNumber" Type="int" Nullable="false" />
+          <Property Name="TblExtName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblExtGroup">
+          <Key>
+            <PropertyRef Name="TblExtGrID" />
+          </Key>
+          <Property Name="TblExtGrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TblExtGrGroupID" Type="int" Nullable="false" />
+          <Property Name="TblExtGrExtID" Type="int" Nullable="false" />
+          <Property Name="TblExtGrRow" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblGroups">
+          <Key>
+            <PropertyRef Name="TblGrID" />
+          </Key>
+          <Property Name="TblGrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TblGrName" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblMainOperator">
+          <Key>
+            <PropertyRef Name="TblMoID" />
+          </Key>
+          <Property Name="TblMoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TblMoExtNumber" Type="int" Nullable="false" />
+          <Property Name="TblMoDay" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="6" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_TblExtGroup_TblExtensions">
+          <End Role="TblExtensions" Type="Self.TblExtensions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblExtGroup" Type="Self.TblExtGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblExtensions">
+              <PropertyRef Name="TblExtID" />
+            </Principal>
+            <Dependent Role="TblExtGroup">
+              <PropertyRef Name="TblExtGrExtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblExtGroup_TblGroups">
+          <End Role="TblGroups" Type="Self.TblGroups" Multiplicity="1" />
+          <End Role="TblExtGroup" Type="Self.TblExtGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGroups">
+              <PropertyRef Name="TblGrID" />
+            </Principal>
+            <Dependent Role="TblExtGroup">
+              <PropertyRef Name="TblExtGrGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles_RoleId">
+          <End Role="TblRoles" Type="Self.TblRoles" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblUsers">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PFCSqlModelStoreContainer">
+          <EntitySet Name="TblExtensions" EntityType="Self.TblExtensions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblExtGroup" EntityType="Self.TblExtGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblGroups" EntityType="Self.TblGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMainOperator" EntityType="Self.TblMainOperator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblRoles" EntityType="Self.TblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUsers" EntityType="Self.TblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TblExtGroup_TblExtensions" Association="Self.FK_TblExtGroup_TblExtensions">
+            <End Role="TblExtensions" EntitySet="TblExtensions" />
+            <End Role="TblExtGroup" EntitySet="TblExtGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblExtGroup_TblGroups" Association="Self.FK_TblExtGroup_TblGroups">
+            <End Role="TblGroups" EntitySet="TblGroups" />
+            <End Role="TblExtGroup" EntitySet="TblExtGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles_RoleId" Association="Self.FK_Users_Roles_RoleId">
+            <End Role="TblRoles" EntitySet="TblRoles" />
+            <End Role="TblUsers" EntitySet="TblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PFCSqlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblExtensions">
+          <Key>
+            <PropertyRef Name="TblExtID" />
+          </Key>
+          <Property Name="TblExtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TblExtNumber" Type="Int32" Nullable="false" />
+          <Property Name="TblExtName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TblExtGroup" Relationship="Self.FK_TblExtGroup_TblExtensions" FromRole="TblExtensions" ToRole="TblExtGroup" />
+        </EntityType>
+        <EntityType Name="TblExtGroup">
+          <Key>
+            <PropertyRef Name="TblExtGrID" />
+          </Key>
+          <Property Name="TblExtGrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TblExtGrGroupID" Type="Int32" Nullable="false" />
+          <Property Name="TblExtGrExtID" Type="Int32" Nullable="false" />
+          <Property Name="TblExtGrRow" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblExtensions" Relationship="Self.FK_TblExtGroup_TblExtensions" FromRole="TblExtGroup" ToRole="TblExtensions" />
+          <NavigationProperty Name="TblGroups" Relationship="Self.FK_TblExtGroup_TblGroups" FromRole="TblExtGroup" ToRole="TblGroups" />
+        </EntityType>
+        <EntityType Name="TblGroups">
+          <Key>
+            <PropertyRef Name="TblGrID" />
+          </Key>
+          <Property Name="TblGrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TblGrName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TblExtGroup" Relationship="Self.FK_TblExtGroup_TblGroups" FromRole="TblGroups" ToRole="TblExtGroup" />
+        </EntityType>
+        <EntityType Name="TblMainOperator">
+          <Key>
+            <PropertyRef Name="TblMoID" />
+          </Key>
+          <Property Name="TblMoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TblMoExtNumber" Type="Int32" Nullable="false" />
+          <Property Name="TblMoDay" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TblUsers" Relationship="Self.FK_Users_Roles_RoleId" FromRole="TblRoles" ToRole="TblUsers" />
+        </EntityType>
+        <EntityType Name="TblUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="TblRoles" Relationship="Self.FK_Users_Roles_RoleId" FromRole="TblUsers" ToRole="TblRoles" />
+        </EntityType>
+        <Association Name="FK_TblExtGroup_TblExtensions">
+          <End Role="TblExtensions" Type="Self.TblExtensions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblExtGroup" Type="Self.TblExtGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblExtensions">
+              <PropertyRef Name="TblExtID" />
+            </Principal>
+            <Dependent Role="TblExtGroup">
+              <PropertyRef Name="TblExtGrExtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblExtGroup_TblGroups">
+          <End Role="TblGroups" Type="Self.TblGroups" Multiplicity="1" />
+          <End Role="TblExtGroup" Type="Self.TblExtGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblGroups">
+              <PropertyRef Name="TblGrID" />
+            </Principal>
+            <Dependent Role="TblExtGroup">
+              <PropertyRef Name="TblExtGrGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles_RoleId">
+          <End Role="TblRoles" Type="Self.TblRoles" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblUsers" Type="Self.TblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblUsers">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PFCSqlEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblExtensions" EntityType="Self.TblExtensions" />
+          <EntitySet Name="TblExtGroup" EntityType="Self.TblExtGroup" />
+          <EntitySet Name="TblGroups" EntityType="Self.TblGroups" />
+          <EntitySet Name="TblMainOperator" EntityType="Self.TblMainOperator" />
+          <EntitySet Name="TblRoles" EntityType="Self.TblRoles" />
+          <EntitySet Name="TblUsers" EntityType="Self.TblUsers" />
+          <AssociationSet Name="FK_TblExtGroup_TblExtensions" Association="Self.FK_TblExtGroup_TblExtensions">
+            <End Role="TblExtensions" EntitySet="TblExtensions" />
+            <End Role="TblExtGroup" EntitySet="TblExtGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblExtGroup_TblGroups" Association="Self.FK_TblExtGroup_TblGroups">
+            <End Role="TblGroups" EntitySet="TblGroups" />
+            <End Role="TblExtGroup" EntitySet="TblExtGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles_RoleId" Association="Self.FK_Users_Roles_RoleId">
+            <End Role="TblRoles" EntitySet="TblRoles" />
+            <End Role="TblUsers" EntitySet="TblUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PFCSqlModelStoreContainer" CdmEntityContainer="PFCSqlEntities">
+          <EntitySetMapping Name="TblExtensions">
+            <EntityTypeMapping TypeName="PFCSqlModel.TblExtensions">
+              <MappingFragment StoreEntitySet="TblExtensions">
+                <ScalarProperty Name="TblExtID" ColumnName="TblExtID" />
+                <ScalarProperty Name="TblExtNumber" ColumnName="TblExtNumber" />
+                <ScalarProperty Name="TblExtName" ColumnName="TblExtName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblExtGroup">
+            <EntityTypeMapping TypeName="PFCSqlModel.TblExtGroup">
+              <MappingFragment StoreEntitySet="TblExtGroup">
+                <ScalarProperty Name="TblExtGrID" ColumnName="TblExtGrID" />
+                <ScalarProperty Name="TblExtGrGroupID" ColumnName="TblExtGrGroupID" />
+                <ScalarProperty Name="TblExtGrExtID" ColumnName="TblExtGrExtID" />
+                <ScalarProperty Name="TblExtGrRow" ColumnName="TblExtGrRow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblGroups">
+            <EntityTypeMapping TypeName="PFCSqlModel.TblGroups">
+              <MappingFragment StoreEntitySet="TblGroups">
+                <ScalarProperty Name="TblGrID" ColumnName="TblGrID" />
+                <ScalarProperty Name="TblGrName" ColumnName="TblGrName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMainOperator">
+            <EntityTypeMapping TypeName="PFCSqlModel.TblMainOperator">
+              <MappingFragment StoreEntitySet="TblMainOperator">
+                <ScalarProperty Name="TblMoID" ColumnName="TblMoID" />
+                <ScalarProperty Name="TblMoExtNumber" ColumnName="TblMoExtNumber" />
+                <ScalarProperty Name="TblMoDay" ColumnName="TblMoDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblRoles">
+            <EntityTypeMapping TypeName="PFCSqlModel.TblRoles">
+              <MappingFragment StoreEntitySet="TblRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUsers">
+            <EntityTypeMapping TypeName="PFCSqlModel.TblUsers">
+              <MappingFragment StoreEntitySet="TblUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

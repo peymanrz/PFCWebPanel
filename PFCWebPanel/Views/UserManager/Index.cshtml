@@ -1,0 +1,78 @@
+﻿@model IEnumerable<PFCWebPanel.Context.TblUsers>
+
+@{
+    ViewData["Title"] = "نمایش کاربران";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" style="margin-top:50px;">
+    <h3 class="pull-right">نمایش کاربران</h3>
+</div>
+<br />
+
+<div class="clearfix"></div>
+<br />
+
+<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th class="text-center">نام کاربر</th>
+                <th class="text-center">شماره موبایل</th>
+                <th class="text-center">عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+
+
+                    <td>
+                        <a href="/UserManager/Edit/@item.Id" class="btn-xs btn-warning">ویرایش</a>|
+                        <a href="#" onclick='Delete(@item.Id)' class="btn-xs btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/Scripts/modal.js"></script>
+    <script>
+        function Delete(id) {
+ 
+            $.get("/UserManager/Delete/" + id, function (result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف کاربر ");
+                $("#myModalBody").html(result);
+            });
+
+        }
+    </script>
+}

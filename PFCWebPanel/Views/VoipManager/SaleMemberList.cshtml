@@ -1,0 +1,126 @@
+﻿@using Newtonsoft.Json;
+
+
+@{
+    ViewBag.Title = "اعضای گروه فروش";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>اعضای گروه فروش</h2>
+
+@using (Html.BeginForm())
+{
+    @*<input type="hidden" id="QueueNumber" name="QueueNumber" value="@ViewBag.QueueNumber" data-myValue="@ViewBag.QueueNumber" />*@
+
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+
+                <div class="box-body">
+                    <div class="form-horizontal">
+                        @ViewBag.errormessage
+                        @*<h4>ویرایش اوپراتورهای صف @ViewBag.QueueNumber</h4>*@
+                        <hr />
+
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3" for="Extension">اوپراتورهای مورد نظر را انتخاب کنید</label>
+                            <div class="col-md-8">
+                                @Html.DropDownList("ExtensionList", null, new { @class = "form-control select2" })
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" value="Create" class="btn btn-success">ذخیره</button>
+                    @*<a href="/Queue" class="btn btn-primary">بازگشت به لیست صف ها</a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+}
+@section scripts
+{
+
+    <script>
+        //
+
+        $(document).ready(function () {
+            var extensionlist = $('#ExtensionList');
+            extensionlist.select2({
+                multiple: true,
+                placeholder: "لطفا داخلی های مورد نظر را انتخاب کنید",
+                dir: "rtl"
+
+            });
+            //var QueueNumber = document.getElementById('QueueNumber').value;// $('#QueueNumber').data("myValue");
+            //$.each([52, 97], function (index, value) {
+            //    alert(index + ": " + value);
+            //});
+            //// var extensionList = $('#ExtensionList');
+            $.ajax({
+                type: 'GET',
+                url: '/VoipManager/GetSaleMemberList/'
+            }).then(function (data) {
+                //alert(data.id);
+                //$.each(data, function (index, value) {
+                //    alert(index + ": " + value);
+                //});
+
+                //$.each(data, function (key, value) {
+                //    //alert(parseInt(value));
+                //    $('#ExtensionList').val(parseInt(value));
+                //    $('#ExtensionList').trigger('change'); // Notify any JS components that the value changed
+
+                //});
+                $('#ExtensionList').val(data);
+                $('#ExtensionList').trigger('change'); // Notify any JS components that the value changed
+                // create the option and append to Select2
+                //var option = new Option(data.id, data.id, true, true);
+                //extensionList.append(option).trigger('change');
+                //$('#ExtensionList').val(data);
+                //$('#ExtensionList').trigger('change'); // Notify any JS components that the value changed
+                //// manually trigger the `select2:select` event
+
+
+
+
+                extensionList.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+
+
+
+
+            });
+           
+
+            //$('#ExtensionList').val(['2000', '3000']);
+            //$('#ExtensionList').trigger('change');
+        });
+
+
+
+
+
+
+
+
+    </script>
+}

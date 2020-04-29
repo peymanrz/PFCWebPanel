@@ -1,0 +1,106 @@
+﻿@model PFCWebPanel.ViewModels.RegisterViewModel
+
+
+
+@{
+    ViewData["Title"] = "ثیت کاربر جدید";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    @*int? mystatus = ViewBag.Myst;
+
+        if (mystatus == 1)
+        {
+            <script>
+                window.onload = function () {
+                    ShowLogin();
+                };
+            </script>
+        }
+        else if (mystatus == 2)
+        {
+            <script>
+                window.onload = function () {
+                    ShowActive();
+                };
+            </script>
+        }*@
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="mainpage">
+         <div class="register col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+            <div class="registerInner">
+                <i class="pull-right fas"></i><div class="textregister">@ViewData["Title"]</div>
+                <hr class="line" />
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group registerStyle">
+                    @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+
+                <div class="form-group registerStyle">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+
+                <div class="form-group registerStyle">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                <div class="form-group registerStyle">
+                    @Html.LabelFor(model => model.Repassword, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Repassword, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                </div>
+                @Html.ValidationMessageFor(model => model.Repassword, "", new { @class = "text-danger" })
+
+
+
+                <div class="form-group registerStyle">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ثبت کاربر" class="btn btn-primary" />
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+}
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modalH ">
+                    <h4 class="modal-title">@ViewBag.ModalTitel</h4>
+                    <button type="button" class="close" style="color:white;" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="bodymodal" class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html lang="fa">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="~/css/SiteStyle.css" rel="stylesheet" />
+    <link href="~/css/AdminStyle.css" rel="stylesheet" />
+    <link href="~/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="topnav" id="myTopnav">
+        <a href="/"><i class="fa fa-home"></i>صفحه اصلی</a>
+        <a href="/UserManager/"><i class="fa fa-users"></i>کاربران</a>
+        <a href="/UserManager/CreateUser/"><i class="fa fa-user"></i>ثبت کاربر جدید</a>
+        <a href="/VoipManager/SaleMemberList"><i class="fa fa-object-group"></i>اعضای گروه فروش</a>
+        <a href="/VoipManager/SaleMemberOrder"><i class="fa fa-arrow-down"></i>اولویت اعضای گروه فروش</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    @*  <div class="mainpanel"><div class="head-nav">
+            <div class="head-nav-left hidden-xs">
+
+                <a href="/Account/SignOut"><i class="fas fa-times-circle" data-toggle="tooltip" data-placement="bottom" title="خروج"></i></a>
+                <a href="/"><i class="fas fa-key" data-toggle="tooltip" data-placement="bottom" title="تغییر کلمه عبور"></i></a>
+                <a href="/"><img src="~/Images/logo.png" width="140" height="55" class="img-circle" data-toggle="tooltip" data-placement="bottom" title="soft98" /></a>
+
+            </div>
+            <div class="head-nav-right-mobile visible-xs">
+                <div id="main-mobile">
+                    <button class="openbtn visible-xs" onclick="openNav()"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="sidebar style-side hidden-xs">
+            <a href="/" style="margin-top:55px;"><i class="fa fa-home"></i>صفحه اصلی</a>
+            <a href="/UserManager/"><i class="fa fa-users"></i>کاربران</a>
+            <a href="/UserManager/Register"><i class="fa fa-cash-register"></i>ثبت کاربر جدید</a>
+            <a href="/Menu/Index"><i class="fa fa-fw fa-list-ul"></i>منو</a>
+        </div>
+
+        <div id="mysidebar" class="sidebar-mobile style-side visible-xs">
+            <a href="javascript:video(0)" class="closebtn" onclick="closeNav()">X</a>
+
+            <a href="/" style="margin-top:55px;"><i class="fa fa-home"></i>صفحه اصلی</a>
+            <a href="/UserManager/"><i class="fa fa-users"></i>کاربران</a>
+            <a href="/UserManager/Register"><i class="fa fa-cash-register"></i>ثبت کاربر جدید</a>
+            <a href="/Menu/Index"><i class="fa fa-fw fa-list-ul"></i>منو</a>
+        </div></div>*@
+
+
+
+
+<div style="margin-left:15%;margin-right:15%;margin-top:3%">
+     @RenderBody()
+</div>
+    <script src="~/Scripts/jquery-3.5.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap-rtl.min.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/js/AdminScript.js"></script>
+    <script src="~/Scripts/table2excel.js"></script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

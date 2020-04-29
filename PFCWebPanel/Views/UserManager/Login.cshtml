@@ -1,0 +1,47 @@
+﻿@model PFCWebPanel.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "ورود به حساب کاربری";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<hl/>
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row ">
+        <div class="col-lg-6 col-lg-offset-2 col-md-8 col-md-offset-2">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @*<label asp-for="Password" class="control-label"></label>*@
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.RememberMe)
+                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-lg-6">
+                <input type="submit" value="ورود به سایت" class="btn btn-default btn-green" />
+            </div>
+            @*<a href="/Account/Forget/" class="pull-left textlogin">رمزم را فراموش کردم</a>
+        <a href="/Account/Register/" class="pull-right textlogin">عضویت</a>*@
+            <br />
+        </div>
+    </div>
+}
+
+ 
+
+

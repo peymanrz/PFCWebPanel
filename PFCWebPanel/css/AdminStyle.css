@@ -1,0 +1,246 @@
+﻿body {
+    direction: rtl;
+    margin: auto;
+    font-family: 'B Yekan',Tahoma;
+    background-color: white;
+    background: url(/Images/banner.png)
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+.fa {
+    margin-left: 10px;
+}
+
+.head-nav {
+    position: absolute;
+    height: 70px;
+    width: 100%;
+    background-color: white;
+    opacity: 0.9;
+    top: 0;
+}
+
+.head-nav-left {
+    float: left;
+    margin-top: 12px;
+    margin-left: 20px;
+    color: black;
+}
+
+    .head-nav-left a:hover {
+        color: #ff6a00;
+        transition: 0.8s;
+    }
+
+    .head-nav-left a {
+        color: black;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: white;
+    opacity: 0.9;
+    overflow-x: hidden;
+    padding-top: 15px;
+    float: left;
+    overflow-y: scroll;
+    margin-bottom: 25px;
+    color: black;
+}
+
+    .sidebar a {
+        padding: 16px 18px 16px 16px;
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        display: block;
+    }
+
+        .sidebar a:hover {
+            color: black;
+            background-color: #ff6a00;
+            transition: 0.5s;
+        }
+
+        .sidebar a:focus {
+            color: black;
+            background-color: #ff6a00;
+            transition: 0.5s;
+        }
+
+        .sidebar a:after {
+            color: black;
+            background-color: #ff6a00;
+            transition: 0.5s;
+        }
+
+.style-side::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px transparent;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.style-side::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.style-side::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(linear, 40% 0% 75%, form(#67dff5), to(#009ddc), color-stop(.6,#67dff5));
+    background-color: #009ddc;
+    border-radius: 10px;
+}
+
+.mainpanel {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.img1 {
+    position: fixed;
+}
+
+.head-nav-right-mobile {
+    float: left;
+}
+
+.sidebar-mobile {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    float: left;
+    background-color: white;
+    opacity: 0.9;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transition: 0.5s;
+    padding-top: 60px;
+    margin-bottom: 25px;
+}
+
+#main-mobile {
+    transition: 0.5s;
+    margin-right: 10px;
+    padding: 16px;
+}
+
+.sidebar-mobile a {
+    padding: 16px 18px 18px 25px;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+    display: block;
+}
+
+    .sidebar-mobile a:hover {
+        color: black;
+        background-color: #ff6a00;
+        transition: 0.8s;
+    }
+
+.sidebar-mobile .closebtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 25px;
+}
+
+.openbtn {
+    margin-top: -10px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: #051c2c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+    .openbtn:hover {
+        background-color: #ff6a00;
+        transition: 0.8s;
+        color: black;
+    }
+
+    .openbtn:focus {
+        background-color: #ff6a00;
+        transition: 0.8s;
+        color: black;
+    }
+
+h3 {
+    color: white;
+}
+
+table, dl {
+    color: #000;
+    font-size: 19px;
+}
+
+tr:hover {
+    background-color: #d2691e;
+    color: #fffff;
+}
+
+.btn-orange {
+    background-color: #ff6a00;
+    border-radius: 5px;
+    color: #051c2c;
+    font-size: 22px;
+    padding: 2px 20px;
+}
+
+    .btn-orange:hover {
+        color: #dbd8d8;
+    }
+
+.labelstyle {
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: #dbd8d8;
+    margin-right: 10px;
+}
+
+.main {
+    margin-top: -600px;
+    margin-right: 250px;
+    margin-left: 50px;
+}
+
+.table > thead > tr > th {
+    vertical-align: middle !important;
+    text-align: center !important;
+    border-bottom: 2px solid #000;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #000;
+}
+
+th {
+    vertical-align: middle !important;
+    text-align: center !important;
+    border-bottom: 2px solid #000;
+}

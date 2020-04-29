@@ -1,0 +1,110 @@
+﻿@model IEnumerable<PFCWebPanel.Context.TblExtGroup>
+
+@{
+    ViewBag.Title = "اولویت اعضای گروه فروش";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    ردیف
+                </th>
+                <th>
+                    شماره اوپراتور
+                </th>
+                <th>
+                    نام اوپراتور
+                </th>
+                <th>عملیات</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TblExtGrRow)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TblExtensions.TblExtNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TblExtensions.TblExtName)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" onclick="GoFirst(@item.TblExtGrID)">انتقال به ابتدای لیست</a>  |
+
+                        <a class="btn btn-success" onclick="GoUp(@item.TblExtGrID)">انتقال به بالا</a>  |
+
+                        <a class="btn btn-default" onclick="GoDown(@item.TblExtGrID)">انتقال به پایین</a>  |
+
+                        <a class="btn btn-danger" onclick="GoLast(@item.TblExtGrID)">انتقال به انتهای لیست</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+
+        function GoUp(TblExtGrID) {
+            $.ajax({
+                type: 'GET',
+                url: '/VoipManager/SaleMemberOrderStepUp/' + TblExtGrID
+            }).then(function (data) {
+
+                if (data == 'true') {
+                    location.reload();
+                }
+            });
+        }
+
+
+        function GoDown(TblExtGrID) {
+            $.ajax({
+                type: 'GET',
+                url: '/VoipManager/SaleMemberOrderStepDown/' + TblExtGrID
+            }).then(function (data) {
+
+                if (data == 'true') {
+                    location.reload();
+                }
+            });
+        }
+
+        function GoFirst(TblExtGrID) {
+            $.ajax({
+                type: 'GET',
+                url: '/VoipManager/SaleMemberOrderStepFirst/' + TblExtGrID
+            }).then(function (data) {
+
+                if (data == 'true') {
+                    location.reload();
+                }
+            });
+        }
+
+
+        function GoLast(TblExtGrID) {
+            $.ajax({
+                type: 'GET',
+                url: '/VoipManager/SaleMemberOrderStepLast/' + TblExtGrID
+            }).then(function (data) {
+
+                if (data == 'true') {
+                    location.reload();
+                }
+            });
+        }
+
+
+
+    </script>
+}

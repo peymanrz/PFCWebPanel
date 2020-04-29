@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="fa">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="~/css/AdminStyle.css" rel="stylesheet" />
+
+</head>
+<body style="background:url(/Images/bannerlogin.png)">
+
+
+
+
+    @*  <img src="~/Images/bannerlogin.png" class="img1" width="100%" height="100%" />*@
+
+
+    <div style="margin-left:20%;margin-right:20%;margin-top:10%">
+        @RenderBody()
+
+    </div>
+
+
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap-rtl.min.js"></script>
+    <script src="~/js/AdminScript.js"></script>
+</body>
+</html>
