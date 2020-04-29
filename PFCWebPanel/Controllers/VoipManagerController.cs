@@ -277,7 +277,26 @@ namespace PFCWebPanel.Controllers
             {
                 var ExtensionList = db.TblExtGroup.Where(eg => eg.TblExtGrGroupID == 1).OrderBy(ex => ex.TblExtGrRow).Select(ex => ex.TblExtensions.TblExtNumber.ToString()).ToList();
                 ApiExecuter Ex = new ApiExecuter();
-                string res = await Ex.EditQueueOperatorsRestApi("5000", ExtensionList);
+                 
+
+                List<string> preEx = new List<string>();
+                List<string> remEx = new List<string>();
+
+                for (int i = 0; i < ExtensionList.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        preEx.Add(ExtensionList[0]);
+
+                    }
+                    else
+                    {
+                        remEx.Add(ExtensionList[i]);
+                    }
+                    await Ex.EditQueueOperatorsRestApi("069", preEx);
+                    await Ex.EditQueueOperatorsRestApi("070", remEx);
+                }
+
 
             }
         }
